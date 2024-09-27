@@ -13,13 +13,27 @@ label {
 }
 
 span {
+  font-size: 0.75rem;
   display: inline-block;
-  min-height: 20px;
+  min-height: 25px;
+  color: white;
 }
 
 input {
   width: 100%;
   height: 1.5rem;
+}
+
+input:focus {
+  outline: none;
+}
+
+.valid-input {
+  background-color: #aaf0c9;
+}
+
+.invalid-input {
+  background-color: #f9bfbf;
 }
 
 button {
@@ -58,8 +72,3 @@ button:hover {
   border-radius: 7px;
   box-shadow: 60px -16px #EAD8B1;
 }
-
-/*
-rgba(0, 255, 0, 0.1) success
-rgba(255, 0, 0, 0.1) failure
-*/
