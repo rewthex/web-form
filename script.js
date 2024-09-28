@@ -1,40 +1,57 @@
-const REGEX_RULES = {
-	username: /^[a-zA-Z0-9]{6,}$/,
-	email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-	country: /^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/,
-	zipcode: /^\d{5}(-\d{4})?$/,
-	password: /^(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/,
-};
-
-const ERROR_MESSAGES = {
-	username:
-		'Username must be at least 6 characters long, and include at a number, capital letter, and symbol.',
-	email: 'Enter a valid email address (*@*.*).',
-	country: 'Enter a valid country.',
-	zipcode: 'Enter your zip code in the form of 5 numbers.',
-	password:
-		'Password must be at least 8 characters long, and include a number,  and include at a number, capital letter, and symbol.',
-	'confirm-password': 'Passwords must match',
-};
+import { REGEX_RULES, ERROR_MESSAGES } from './constants.js';
 
 const inputs = document.querySelectorAll('input');
 inputs.forEach(function (currentNode) {
-	currentNode.addEventListener('blur', validateInput);
+	currentNode.addEventListener('blur', stylizeInput);
 });
 
 const submitButton = document.querySelector('button');
 submitButton.addEventListener('click', submitForm);
 
 function submitForm(event) {
-	console.log(event.target.value);
+	const signupForm = document.querySelector('.signup-form');
+	let isValidForm = true;
+
+	inputs.forEach(function (currentNode) {
+		if (!isInputValid(currentNode)) {
+			invalidForm(signupForm);
+			isValidForm = false;
+		}
+	});
+
+	if (isValidForm) {
+		validForm(signupForm);
+	}
 }
 
-function validateInput(event) {
+function validForm(signupForm) {
+	signupForm.classList.remove('invalid-signup-form');
+	signupForm.classList.add('valid-signup-form');
+}
+
+function invalidForm(signupForm) {
+	signupForm.classList.remove('valid-signup-form');
+	signupForm.classList.add('invalid-signup-form');
+}
+
+function stylizeInput(event) {
 	const inputNode = event.target;
-	const inputName = inputNode.name;
-	const inputValue = inputNode.value;
-	console.log(inputValue);
-	console.log(inputName);
+	if (isInputValid(inputNode)) {
+		inputNode.nextElementSibling.innerText = '';
+		inputNode.classList.remove('invalid-input');
+		inputNode.classList.add('valid-input');
+	} else {
+		inputNode.nextElementSibling.innerText = ERROR_MESSAGES[inputNode.name];
+		inputNode.classList.remove('valid-input');
+		inputNode.classList.add('invalid-input');
+	}
+}
+
+function isInputValid(node) {
+	const inputName = node.name;
+	const inputValue = node.value;
+	if (!inputValue) return false;
+
 	let isValid;
 
 	switch (inputName) {
@@ -54,29 +71,9 @@ function validateInput(event) {
 			isValid = REGEX_RULES.password.test(inputValue);
 			break;
 		case 'confirm-password':
-			isValid = inputValue === inputNode.previousElementSibling.value;
+			isValid = inputValue === document.getElementById('password').value;
 			break;
 	}
 
-	if (inputValue) {
-		if (isValid) {
-			stylizeValidInput(inputNode);
-		} else {
-			stylizeInvalidInput(inputNode);
-		}
-	} else {
-		return isValid;
-	}
-}
-
-function stylizeValidInput(node) {
-	node.nextElementSibling.innerText = '';
-	node.classList.remove('invalid-input');
-	node.classList.add('valid-input');
-}
-
-function stylizeInvalidInput(node) {
-	node.nextElementSibling.innerText = ERROR_MESSAGES[node.name];
-	node.classList.remove('valid-input');
-	node.classList.add('invalid-input');
+	return isValid;
 }

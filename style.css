@@ -28,6 +28,8 @@ input:focus {
   outline: none;
 }
 
+input::auto
+
 .valid-input {
   background-color: #aaf0c9;
 }
@@ -69,6 +71,14 @@ button:hover {
   align-self: center;
   gap: 5px;
   padding: 45px 25px;
-  border-radius: 7px;
-  box-shadow: 60px -16px #EAD8B1;
+  box-shadow: 60px -60px #d6d6d6;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.valid-signup-form {
+  box-shadow: 60px 60px #aaf0c9;
+}
+
+.invalid-signup-form {
+  box-shadow: -60px -60px #f9bfbf;
 }
