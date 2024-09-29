@@ -8,7 +8,7 @@ export const REGEX_RULES = {
 
 export const ERROR_MESSAGES = {
 	username:
-		'Username must contain 6 characters and consist of letters and numbers.',
+		'Username must contain at least 6 characters (letters and numbers).',
 	email: 'Enter a valid email address (eg. name@email.com).',
 	country: 'Enter a valid country.',
 	zipcode: 'Enter your zip code in the form of 5 numbers.',
