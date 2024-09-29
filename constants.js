@@ -8,11 +8,11 @@ export const REGEX_RULES = {
 
 export const ERROR_MESSAGES = {
 	username:
-		'Username must be at least 6 characters long and consist of letters and numbers.',
+		'Username must contain 6 characters and consist of letters and numbers.',
 	email: 'Enter a valid email address (eg. name@email.com).',
 	country: 'Enter a valid country.',
 	zipcode: 'Enter your zip code in the form of 5 numbers.',
 	password:
-		'Password must be at least 8 characters long, and include a number,  and include at a number, capital letter, and symbol.',
+		'Password must contain 8 characters and at least one of the following: a number, capital letter, and symbol.',
 	'confirm-password': 'Passwords must match',
 };

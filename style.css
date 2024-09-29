@@ -6,79 +6,93 @@
   padding: 0;
 }
 
+.form-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 4fr 1fr;
+  grid-template-areas: 
+    '.      .      .'
+    '. signup-form .'
+    '.      .      .';
+  height: 100vh;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  gap: 10px;
+  padding: 45px 25px;
+  border: 1px solid rgb(184, 184, 184);
+  grid-area: signup-form;
+  box-shadow: 60px -60px #d6d6d6;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.form-header {
+  margin-bottom: 20px;
+}
+
 label {
   display: block;
-  font-size: 1.1rem;
-  color: white;
+  margin-bottom: 3px;
+  font-size: 0.65rem;
+  letter-spacing: 1.5px;
 }
 
 span {
-  font-size: 0.75rem;
+  font-size: 0.60rem;
   display: inline-block;
   min-height: 25px;
-  color: white;
+  color: red;
 }
 
 input {
-  width: 100%;
+  padding: 5px;
+  font-size: 0.75rem;
+  width: 97%;
   height: 1.5rem;
+  border: 1px solid rgb(139, 139, 139);
 }
 
 input:focus {
   outline: none;
-}
-
-input::auto
-
-.valid-input {
-  background-color: #aaf0c9;
-}
-
-.invalid-input {
-  background-color: #f9bfbf;
+  border: 1px solid black;
 }
 
 button {
+  align-self: center;
+  width: 100%;
   height: 1.9rem;
   font-size: 1.2rem;
-  background-color: #3A6D8C;
-  border: none;
+  background-color: #000000;
   color: white;
+  border: none;
   margin-top: 5px;
   border-radius: 2px;
 }
 
 button:hover {
-  background-color: #6A9AB0;
+  background-color: #868686;
 }
 
-.form-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 4fr 1fr;
-  grid-template-areas: '.      .      .'
-                       '. signup-form .'
-                       '.      .      .';
-  height: 100vh;
-}
-
-.signup-form {
-  grid-area: signup-form;
-  background-color: #004488;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-self: center;
-  gap: 5px;
-  padding: 45px 25px;
-  box-shadow: 60px -60px #d6d6d6;
-  transition: box-shadow 0.3s ease-in-out;
+button:active {
+  background-color: #202020;
 }
 
 .valid-signup-form {
-  box-shadow: 60px 60px #aaf0c9;
+  box-shadow: 60px 60px #dbffe1;
 }
 
 .invalid-signup-form {
-  box-shadow: -60px -60px #f9bfbf;
+  box-shadow: -60px -60px #ffe6e6;
+}
+
+.valid-input {
+  background-color: #dbffe1;
+}
+
+.invalid-input {
+  background-color: #ffe6e6;
 }
